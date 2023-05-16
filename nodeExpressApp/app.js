@@ -15,17 +15,26 @@
 //     );
 //   else console.log("Error occurred, server can't start", error);
 // });
-import express from 'express'
-// import require from 
-import { createRequire } from 'module';
+import express from "express";
+// import require from
+import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
-const app=express()
-const port=3000;
+const app = express();
+const port = 3000;
 
-const sdk = require('api')('@render-api/v1.0#dnrc1ulf088q9j');
+const sdk = require("api")("@render-api/v1.0#dnrc1ulf088q9j");
 
-sdk.auth('rnd_IUAofOFZ8o28tkrrVF4wzFeknbyC');
-sdk.getServices({limit: '20'})
+sdk.auth("rnd_IUAofOFZ8o28tkrrVF4wzFeknbyC");
+sdk
+  .getServices({ limit: "20" })
   .then(({ data }) => console.log(data))
-  .catch(err => console.error(err));
+  .catch((err) => console.error(err));
+
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+app.listen(port, () => {
+  console.log(`app listening on http://localhost:${port}`);
+});
+console.log("hi");
