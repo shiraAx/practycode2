@@ -2,11 +2,12 @@
 
 import express from "express";
 import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
 const app = express();
 const port = 3000;
 
-const sdk = createRequire(import.meta.url)("api")("@render-api/v1.0#dnrc1ulf088q9j");
+const sdk = require("api")("@render-api/v1.0#dnrc1ulf088q9j");
 
 sdk.auth("rnd_IUAofOFZ8o28tkrrVF4wzFeknbyC");
 sdk
